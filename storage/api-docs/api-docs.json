@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "My Rest Api",
-        "description": "Laravel project to practicedeveloping Rest API with LS Swagger OpenApi",
+        "title": "My Rest API",
+        "description": "Laravel project to practice developing Rest API with L5 Swagger OpenAPI",
         "contact": {
-            "name": "Kevin Divra David Sebasti Nababan",
+            "name": "Kevin",
             "email": "kevindivra2420@gmail.com"
         },
         "version": "1.0",
@@ -13,53 +13,33 @@
         }
     },
     "paths": {
-        "/api/books": {
-            "get": {
-                "tags": [
-                    "book"
-                ],
-                "summary": "Display a listing of item",
-                "operationId": "index",
-                "responses": {
-                    "200": {
-                        "description": "successful ",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    }
-                }
-            },
+        "/api/user/register": {
             "post": {
                 "tags": [
-                    "book"
+                    "User"
                 ],
-                "summary": "Store a newly created item",
-                "operationId": "store",
+                "summary": "Register new user & get token",
+                "operationId": "register",
                 "requestBody": {
                     "description": "Request body description",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Book"
+                                "$ref": "#/components/schemas/User"
                             },
                             "example": {
-                                "title": "Eating Clean",
-                                "author": "Inge Tumiwa-Bachrens",
-                                "publisher": "Kawan Pustaka",
-                                "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/335111107.jpg",
-                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-                                "price": "85000"
+                                "name": "yusup",
+                                "email": "yusup@gmail.com",
+                                "password": "yusup123",
+                                "password_confirmation": "yusup123"
                             }
                         }
                     }
                 },
                 "responses": {
                     "400": {
-                        "description": "invalid input",
+                        "description": "Invalid input",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -77,12 +57,168 @@
                 }
             }
         },
-        "/api/books/{id}": {
+        "/api/user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Log in to existing user & get token",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "email": "yusup@gmail.com",
+                                "password": "yusup123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Log out & destroy self token",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/book": {
             "get": {
                 "tags": [
-                    "book"
+                    "Book"
                 ],
-                "description": "Display the specified item",
+                "summary": "Display a listing of the items",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Store a newly created item",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "title": "Eating Clean",
+                                "author": "Inge Tumiwa-Bachrens",
+                                "publisher": "Kawan Pustaka",
+                                "publication_year": "2016",
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
+                                "price": 85000
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/book/{id}": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "Display the specified item",
                 "operationId": "show",
                 "parameters": [
                     {
@@ -98,7 +234,7 @@
                 ],
                 "responses": {
                     "404": {
-                        "description": "item not found",
+                        "description": "Item not found",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -106,7 +242,7 @@
                         }
                     },
                     "400": {
-                        "description": "invalid input",
+                        "description": "Invalid input",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -125,7 +261,7 @@
             },
             "put": {
                 "tags": [
-                    "book"
+                    "Book"
                 ],
                 "summary": "Update the specified item",
                 "operationId": "update",
@@ -154,16 +290,16 @@
                                 "author": "Inge Tumiwa-Bachrens",
                                 "publisher": "Kawan Pustaka",
                                 "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/335111107.jpg",
+                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
                                 "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-                                "price": "85000"
+                                "price": 85000
                             }
                         }
                     }
                 },
                 "responses": {
                     "404": {
-                        "description": "item not found",
+                        "description": "Item not found",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -171,7 +307,7 @@
                         }
                     },
                     "400": {
-                        "description": "invalid input",
+                        "description": "Invalid input",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -179,18 +315,24 @@
                         }
                     },
                     "200": {
-                        "description": "succesful",
+                        "description": "Successful",
                         "content": {
                             "application/json": {
                                 "schema": {}
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
-                    "book"
+                    "Book"
                 ],
                 "summary": "Remove the specified item",
                 "operationId": "destroy",
@@ -198,7 +340,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "ID of item that needs to be  removed",
+                        "description": "ID of item that needs to be removed",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -208,7 +350,7 @@
                 ],
                 "responses": {
                     "404": {
-                        "description": "item not found",
+                        "description": "Item not found",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -216,7 +358,7 @@
                         }
                     },
                     "400": {
-                        "description": "invalid input",
+                        "description": "Invalid input",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -224,14 +366,20 @@
                         }
                     },
                     "200": {
-                        "description": "succesful",
+                        "description": "Successful",
                         "content": {
                             "application/json": {
                                 "schema": {}
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
             }
         }
     },
@@ -246,6 +394,41 @@
                 ],
                 "xml": {
                     "name": "Book"
+                }
+            },
+            "User": {
+                "title": "User model",
+                "description": "User model",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "passport_token_ready": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter token in format without \"Bearer \"",
+                "name": "Authorization",
+                "in": "header"
+            },
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+                        "scopes": []
+                    }
                 }
             }
         }

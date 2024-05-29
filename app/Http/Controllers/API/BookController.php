@@ -9,24 +9,27 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Models\Book;
 use OpenApi\Annotations as OA;
 
+
 /**
- * Class BookController.
+ * Class Controller,
  * 
  * @author kevin <kevindivra2420@gmail.com>
  */
+
 class BookController extends Controller
 {
-    /**
+
+    /** 
      * @OA\Get(
-     *    path="/api/books",
-     *    tags={"book"},
-     *    summary="Display a listing of item",
-     *    operationId="index",
-     *    @OA\Response(
-     *        response=200,
-     *        description="successful ",
-     *        @OA\JsonContent()
-     *    )
+     *     path="/api/book",
+     *     tags={"Book"},
+     *     summary="Display a listing of the items",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful",
+     *         @OA\JsonContent()
+     *     )
      * )
      */
     public function index()
@@ -34,40 +37,45 @@ class BookController extends Controller
         return Book::get();
     }
 
+
+
     /**
      * @OA\Post(
-     *    path="/api/books",
-     *    tags={"book"},
-     *    summary="Store a newly created item",
-     *    operationId="store",
-     *    @OA\Response(
-     *        response=400,
-     *        description="invalid input",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Response(
-     *        response=201,
-     *        description="Successful",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\RequestBody(
+     *     path="/api/book",
+     *     tags={"Book"},
+     *     summary="Store a newly created item",
+     *     operationId="store",
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Successful",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\RequestBody(
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
      *             ref="#/components/schemas/Book",
      *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *             "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/335111107.jpg",
-     *             "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-     *             "price": "85000"}
+     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+     *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
+     *                      "price": 85000}
      *         ),
-     *     )
-     *  )
+     *     ),
+     *      security={{"passport_token_ready":{}, "passport":{}}}
+     * )
      */
+
+
     public function store(Request $request)
     {
-        try {
+        try{
             $validator = Validator::make($request->all(), [
-                'title' => 'required|unique:books',
+                'title'  => 'required|unique:books',
                 'author'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
@@ -78,24 +86,25 @@ class BookController extends Controller
             return $book;
 
         } catch(\Exception $exception) {
-            throw new HttpException(400, "Invalid data -{$exception->getMessage()}"); 
+            throw new HttpException(400, "Invalid Data : {$exception->getMessage()}");
         }
     }
 
+
     /**
      * @OA\Get(
-     *     path="/api/books/{id}",
-     *     tags={"book"},
-     *     description="Display the specified item",
+     *     path="/api/book/{id}",
+     *     tags={"Book"},
+     *     summary="Display the specified item",
      *     operationId="show",
      *     @OA\Response(
      *         response=404,
-     *         description="item not found",
+     *         description="Item not found",
      *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response=400,
-     *         description="invalid input",
+     *         description="Invalid input",
      *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
@@ -115,6 +124,8 @@ class BookController extends Controller
      *     ),
      * )
      */
+
+
     public function show($id)
     {
         $book = Book::find($id);
@@ -124,36 +135,37 @@ class BookController extends Controller
         return $book;
     }
 
+
     /**
      * @OA\Put(
-     *    path="/api/books/{id}",
-     *    tags={"book"},
-     *    summary="Update the specified item",
-     *    operationId="update",
-     *    @OA\Response(
-     *        response=404,
-     *        description="item not found",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Response(
-     *        response=400,
-     *        description="invalid input",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="succesful",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Parameter(
-     *        name="id",
-     *        in="path",
-     *        description="ID of item that needs to be updated",
-     *        required=true,
-     *        @OA\Schema(
-     *            type="integer",
-     *            format="int64"
-     *        )
+     *     path="/api/book/{id}",
+     *     tags={"Book"},
+     *     summary="Update the specified item",
+     *     operationId="update",
+     *     @OA\Response(
+     *         response=404,
+     *         description="Item not found",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of item that needs to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
      *     ),
      *     @OA\RequestBody(
      *         required=true,
@@ -161,70 +173,74 @@ class BookController extends Controller
      *         @OA\JsonContent(
      *             ref="#/components/schemas/Book",
      *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *             "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/335111107.jpg",
-     *             "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-     *             "price": "85000"}
+     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+     *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
+     *                      "price": 85000}
      *         ),
-     *     )
+     *     ),
+     *      security={{"passport_token_ready":{}, "passport":{}}}
      * )
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, string $id)
     {
         $book = Book::find($id);
         if(!$book){
-            throw new HttpException(404, "item not found");
+            throw new HttpException(404, 'Item not found');
         }
 
-        try {
+        try{
             $validator = Validator::make($request->all(), [
-                'title' => 'required|unique:books',
-                'author' => 'required|max:100',
+                'title'  => 'required|unique:books',
+                'author'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-            $book->fill($request->all())->save();
-            return response()->json(array('message'=>'Update succesfully'), 200);
-    
+           $book->fill($request->all())->save();
+           return response()->json(array('message'=>'Updated successfully'), 200);
+
         } catch(\Exception $exception) {
-            throw new HttpException(400, "Invalid data : {$exception->getMessage()}");
+            throw new HttpException(400, "Invalid Data : {$exception->getMessage()}");
         }
     }
 
     /**
      * @OA\Delete(
-     *    path="/api/books/{id}",
-     *    tags={"book"},
-     *    summary="Remove the specified item",
-     *    operationId="destroy",
-     *    @OA\Response(
-     *        response=404,
-     *        description="item not found",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Response(
-     *        response=400,
-     *        description="invalid input",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Response(
-     *        response=200,
-     *        description="succesful",
-     *        @OA\JsonContent()
-     *    ),
-     *    @OA\Parameter(
-     *        name="id",
-     *        in="path",
-     *        description="ID of item that needs to be  removed",
-     *        required=true,
-     *        @OA\Schema(
-     *            type="integer",
-     *            format="int64"
-     *        )
-     *    ),
+     *     path="/api/book/{id}",
+     *     tags={"Book"},
+     *     summary="Remove the specified item",
+     *     operationId="destroy",
+     *     @OA\Response(
+     *         response=404,
+     *         description="Item not found",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of item that needs to be removed",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *      security={{"passport_token_ready":{}, "passport":{}}}
      * )
      */
-    public function destroy($id)
+    
+    public function destroy(string $id)
     {
         $book = Book::find($id);
         if(!$book){
