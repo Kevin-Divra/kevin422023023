@@ -11,30 +11,42 @@
                     <!-- Product Details Left -->
                     <div class="product-details-left">
                         <div class="product-details-images-2 slider-lg-image-2">
-
+                        
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="{{asset('assets/images/product/single-product-01.webp')}}" class="popup-img product-img-main-href">
+                                    <a href="{{asset('assets/images/product/single-product-01.webp')}}" class="poppu-img product-img-main-href">
                                         <img src="{{asset('assets/images/product/single-product-01.webp')}}" class="img-fluid product-img-main-src" alt="">
                                     </a>
                                 </div>
                             </div>
-                            @for($i=0;$i<3;$i++)
                             <div class="easyzoom-style">
                                 <div class="easyzoom easyzoom--overlay">
-                                    <a href="{{asset('assets/images/product/single-product-02.webp')}}" class="popup-img">
-                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid" alt="">
+                                    <a href="{{asset('assets/images/product/single-product-02.webp')}}" class="poppu-img product-img-main-href">
+                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid product-img-main-src" alt="">
                                     </a>
                                 </div>
                             </div>
-                            @endfor
+                            <div class="easyzoom-style">
+                                <div class="easyzoom easyzoom--overlay">
+                                    <a href="{{asset('assets/images/product/single-product-03.webp')}}" class="poppu-img poppu-img product-img-main-href">
+                                        <img src="{{asset('assets/images/product/single-product-03.webp')}}" class="img-fluid img-fluid product-img-main-src" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="easyzoom-style">
+                                <div class="easyzoom easyzoom--overlay">
+                                    <a href="{{asset('assets/images/product/single-product-04.webp')}}" class="poppu-img poppu-img product-img-main-href">
+                                        <img src="{{asset('assets/images/product/single-product-04.webp')}}" class="img-fluid img-fluid product-img-main-src" alt="">
+                                    </a>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="product-details-thumbs-2 slider-thumbs-2">
                             <div class="sm-image"><img src="{{asset('assets/images/product/small/1-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
-                            @for($i=0;$i<3;$i++)
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.webp')}}" alt="product image thumb"></div>
-                            @endfor
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/3-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/4-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
                         </div>
                     </div>
                     <!--// Product Details Left -->
