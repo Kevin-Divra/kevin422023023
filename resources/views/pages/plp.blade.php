@@ -10,23 +10,18 @@
                 <div class="col-lg-3 col-md-3 order-md-1 order-2 small-mt__40">
                     <div class="shop-widget widget-shop-publishers mt-3">
                         <div class="product-filter">
-                            <h6 class="mb-20">Publishers</h6>
-                            <select class="filter form-select form-select-sm" name="_publisher" onchange="getData()">
+                            <h6 class="mb-20">Category</h6>
+                            <select class="_filter form-select form-select-sm" name="_category" onchange="getData()">
                                 <option value="" selected>All</option>
-                                <option value="putnam">Putnam</option>
-                                <option value="harriman house">Harriman House</option>
-                                <option value="balai pustaka">Balai Pustaka</option>
-                                <option value="lentera dipantara">Lentera Dipantara</option>
-                                <option value="pan books">Pan Books</option>
-                                <option value="firefly books">Firefly Books</option>
-                                <option value="gramedia">Gramedia</option>
-                                <option value="scholastic">Scholastic</option>
-                                <option value="harper">Harper</option>
-                                <option value="dk children">DK Children</option>
-                                <option value="bentang pustaka">Bentang Pustaka</option>
-                                <option value="gagas media">Gagas Media</option>
-                                <option value="grasindo">Grasindo</option>
-                                <option value="marjin kiri">Marjin Kiri</option>
+                                <option value="Futsal">Futsal</option>
+                                <option value="Badminton">Badminton</option>
+                                <option value="Foot Ball">Foot Ball</option>
+                                <option value="Basket Ball">Basket Ball</option>
+                                <option value="Running">Running</option>
+                                <option value="Swimming">Swimming</option>
+                                <option value="Billiard">Billiard</option>
+                                <option value="Volley Ball">Volley Ball</option>
+                                <option value="Tenis Meja">Tenis Meja</option>
                             </select>
                         </div>
                     </div>
@@ -62,24 +57,15 @@
                         <div class="product-filter">
                             <h6 class="mb-20">Tags</h6>
                             <div class="blog-tagcloud">
-                                <a href="#" class="selected">Book</a>
-                                <a href="#">EBook</a>
-                                <a href="#">Best Seller</a>
-                                <a href="#">Fiction</a>
-                                <a href="#">Education</a>
-                                <a href="#">Literature</a>
-                                <a href="#">Classics</a>
-                                <a href="#">Real Event</a>
-                                <a href="#">Young Adult</a>
-                                <a href="#">Religion</a>
-                                <a href="#">Health</a>
-                                <a href="#">Comic</a>
-                                <a href="#">Horror</a>
-                                <a href="#">Poem</a>
-                                <a href="#">Filmed</a>
-                                <a href="#">Encyclopedia</a>
-                                <a href="#">In English</a>
-                                <a href="#">In Indonesian</a>
+                                <a href="#" class="selected">Foot Ball</a>
+                                <a href="#">Futsal</a>
+                                <a href="#">Basket Ball</a>
+                                <a href="#">Volley Ball</a>
+                                <a href="#">Badminton</a>
+                                <a href="#">Running</a>
+                                <a href="#">Swimming</a>
+                                <a href="#">Billiard</a>
+                                <a href="#">Tenis Meja</a>
                             </div>
                         </div>
                     </div>
@@ -111,7 +97,7 @@
                                 <div class="header-search-box">
                                     <input type="text" class="_filter search-field" name="_search"
                                             onkeypress="getDataOnEnter(event)"
-                                            placeholder="Search by title or author...">
+                                            placeholder="Search by title or brand...">
                                     <button class="search-icon"><i class="icon-magnifier"></i></button>
                                 </div>
                             </div>

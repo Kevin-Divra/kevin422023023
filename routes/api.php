@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\SportController;
 
 Route::prefix('user')->group(function () {
     Route::get('/users', function () {
@@ -15,14 +16,14 @@ Route::prefix('user')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 });
 
-Route::Resource('book', BookController::class, [
+Route::Resource('sport', SportController::class, [
     'only' => [
         'index',
         'show'
     ]
 ]);
 
-Route::resource('book', BookController::class, [
+Route::resource('sport', SportController::class, [
     'except' => [
         'index',
         'show'

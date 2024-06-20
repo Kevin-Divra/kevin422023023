@@ -1,7 +1,7 @@
 @extends('layouts.app-public')
 @section('title', 'Product Detail')
 @section('content')
-<div class="site-wrapper-reveal">
+<div class="site-wrapper-reveal ">
 
     <div class="single-product-wrap section-space--pt_90 border-bottom pb-5 mb-5">
         <div class="container">
@@ -93,12 +93,12 @@
 
                         <div class="product_meta mt-30">
                             <div class="posted_in item_meta">
-                                <span class="label">Author: </span>
-                                <span id="product-author" class="text-color-primary"></span>
+                                <span class="label">Brand: </span>
+                                <span id="product-brand" class="text-color-primary"></span>
                             </div>
                             <div class="posted_in item_meta">
-                                <span class="label">Publisher: </span>
-                                <span id="product-publisher"></span>
+                                <span class="label">Category: </span>
+                                <span id="product-category"></span>
                             </div>
                             <div class="tagged_as item_meta">
                                 <span class="label">Tag: </span>

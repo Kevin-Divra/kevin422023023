@@ -30,7 +30,7 @@ function breakWord(text){
 
 function getCookie (name) {
     let value = `; ${document.cookie}`;
-    let parts = value.split(`; $(name)=`);
+    let parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
@@ -46,7 +46,7 @@ $("#logout-btn").on('click', function(e) {
         Swal.fire({
             position: "top-end",
             icon: "info",
-            title: "Logout successfully..",
+            title: "Logout successfully.. Thankyou!",
             showConfirmButton: false,
             timer: 1500
         });
@@ -59,7 +59,7 @@ $("#logout-btn").on('click', function(e) {
         Swal.fire({
             position: "top-end",
             icon: "warning",
-            title: "Failed to loguot",
+            title: "Failed to logout",
             html: error.response?error.response.data.message:error.message,
             showConfirmButton: false,
             timer: 5000
@@ -86,9 +86,9 @@ $("#form-login-btn").on('click', function(e) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Login successfully!",
+                title: "Login successfully! Happy Shopping...",
                 showConfirmButton: false,
-                timer: 1500
+                timer: 5000
             });
             setTimeout(function() {
                 window.location=baseUrl
@@ -121,7 +121,7 @@ $("#form-register-btn").on('click', function(e) {
             document.cookie = 'ut='+response.data.token;
             Swal.fire({
                 position: "top-end",
-                icon: "succes",
+                icon: "success",
                 title: "Register successfully and logged in automatically",
                 showConfirmButton: false,
                 timer: 1500

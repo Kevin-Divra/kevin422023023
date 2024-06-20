@@ -6,19 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Models\Book;
+use App\Models\Sport;
 use OpenApi\Annotations as OA;
 /**
  * Class Controller,
  * 
  * @author kevin <kevindivra2420@gmail.com>
  */
-class BookController extends Controller
+class SportController extends Controller
 {
     /** 
      * @OA\Get(
-     *     path="/api/book",
-     *     tags={"book"},
+     *     path="/api/sport",
+     *     tags={"Sport"},
      *     summary="Display a listing of the items",
      *     operationId="index",
      *     @OA\Response(
@@ -58,9 +58,9 @@ class BookController extends Controller
      *         )
      *     ),
      *     @OA\Parameter(
-     *         name="_publisher",
+     *         name="_category",
      *         in="query",
-     *         description="search by publisher like name",
+     *         description="search by category like name",
      *         required=false,
      *         @OA\Schema(
      *             type="integer",
@@ -86,13 +86,13 @@ class BookController extends Controller
             $page                   = $data['filter']['_page'] = (@$data['filter']['_page'] ? intval($data['filter']['_page']) : 1);
             $limit                  = $data['filter']['_limit'] = (@$data['filter']['_limit'] ? intval($data['filter']['_limit']) : 1000);
             $offset                 = ($page?($page-1)*$limit:0);
-            $data['products']       = Book::whereRaw('1 = 1');
+            $data['products']       = Sport::whereRaw('1 = 1');
 
             if($request->get('_search')){
-                $data['products'] = $data['products']->whereRaw('(LOWER(title) LIKE "%'.strtolower($request->get('_search')).'%" OR LOWER(author) LIKE "%'.strtolower($request->get('_search')).'%")');
+                $data['products'] = $data['products']->whereRaw('(LOWER(title) LIKE "%'.strtolower($request->get('_search')).'%" OR LOWER(brand) LIKE "%'.strtolower($request->get('_search')).'%")');
             }
-            if($request->get('_publisher')){
-                $data['products'] = $data['products']->whereRaw('LOWER(publisher) = "'.strtolower($request->get('_publisher')).'"');
+            if($request->get('_category')){
+                $data['products'] = $data['products']->whereRaw('LOWER(category) = "'.strtolower($request->get('_category')).'"');
             }
             if($request->get('_sort_by')){
             switch ($request->get('_sort_by')) {
@@ -132,8 +132,8 @@ class BookController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/book",
-     *     tags={"Book"},
+     *     path="/api/sport",
+     *     tags={"Sport"},
      *     summary="Store a newly created item",
      *     operationId="store",
      *     @OA\Response(
@@ -150,9 +150,9 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+     *             ref="#/components/schemas/Sport",
+     *             example={"title": "Eating Clean", "brand": "Inge Tumiwa-Bachrens", "category": "Kawan Pustaka", "publication_year": "2016",
+     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/products/1482170055i/33511107.jpg",
      *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
      *                      "price": 85000}
      *         ),
@@ -166,15 +166,15 @@ class BookController extends Controller
     {
         try{
             $validator = Validator::make($request->all(), [
-                'title'  => 'required|unique:books',
-                'author'  => 'required|max:100',
+                'title'  => 'required|unique:sports',
+                'brand'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-            $book = new Book;
-            $book->fill($request->all())->save();
-            return $book;
+            $sport = new Sport;
+            $sport->fill($request->all())->save();
+            return $sport;
 
         } catch(\Exception $exception) {
             throw new HttpException(400, "Invalid Data : {$exception->getMessage()}");
@@ -184,8 +184,8 @@ class BookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/book/{id}",
-     *     tags={"Book"},
+     *     path="/api/sport/{id}",
+     *     tags={"Sport"},
      *     summary="Display the specified item",
      *     operationId="show",
      *     @OA\Response(
@@ -219,18 +219,18 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $sport = Sport::find($id);
+        if(!$sport){
             throw new HttpException(404, 'Item not found');
         }
-        return $book;
+        return $sport;
     }
 
 
     /**
      * @OA\Put(
-     *     path="/api/book/{id}",
-     *     tags={"Book"},
+     *     path="/api/sport/{id}",
+     *     tags={"Sport"sport},
      *     summary="Update the specified item",
      *     operationId="update",
      *     @OA\Response(
@@ -262,9 +262,9 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
+     *             ref="#/components/schemas/Sport",
+     *             example={"title": "Eating Clean", "brand": "Inge Tumiwa-Bachrens", "category": "Kawan Pustaka", "publication_year": "2016",
+     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/products/1482170055i/33511107.jpg",
      *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
      *                      "price": 85000}
      *         ),
@@ -275,20 +275,20 @@ class BookController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $sport = Sport::find($id);
+        if(!$sport){
             throw new HttpException(404, 'Item not found');
         }
 
         try{
             $validator = Validator::make($request->all(), [
-                'title'  => 'required|unique:books',
-                'author'  => 'required|max:100',
+                'title'  => 'required|unique:sports',
+                'brand'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-           $book->fill($request->all())->save();
+           $sport->fill($request->all())->save();
            return response()->json(array('message'=>'Updated successfully'), 200);
 
         } catch(\Exception $exception) {
@@ -298,8 +298,8 @@ class BookController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/book/{id}",
-     *     tags={"Book"},
+     *     path="/api/sport/{id}",
+     *     tags={"Sport"},
      *     summary="Remove the specified item",
      *     operationId="destroy",
      *     @OA\Response(
@@ -333,13 +333,13 @@ class BookController extends Controller
     
     public function destroy(string $id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $sport = Sport::find($id);
+        if(!$sport){
             throw new HttpException(404, 'Item not found');
         }
 
         try {
-            $book->delete();
+            $sport->delete();
             return response()->json(array('message'=>'Deleted successfully'), 200);
 
         } catch(\Exception $exception) {

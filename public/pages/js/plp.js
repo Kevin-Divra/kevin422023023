@@ -7,7 +7,7 @@ function getDataOnEnter(event) {
 }
 
 function getData(toPage=1) {
-    let url = baseUrl+'/api/book';
+    let url = baseUrl+'/api/sport';
     if (toPage) {
         $('[name="_page"]').val(toPage);
     }
@@ -27,11 +27,11 @@ function getData(toPage=1) {
                 template += `   <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="single-product-item text-center">
                                         <div class="products-images">
-                                            <a href="/book/`+item.id+`" class="product-thumbnail">
-                                                <img src="`+item.cover+`" alt="Product Images" height="300">
+                                            <a href="/sport/`+item.id+`" class="product-thumbnail">
+                                                <img src="`+item.cover+`" alt="Product Images" height="175" style="border: 4px solid #dab049; border-radius:15px;">
                                             </a>
                                             <div class="product-actions">
-                                                <a href="/book/`+item.id+`">
+                                                <a href="/sport/`+item.id+`">
                                                     <i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span>
                                                 </a>
                                                 <a href="#">
@@ -41,9 +41,9 @@ function getData(toPage=1) {
                                         </div>
                                         <div class="product-content">
                                             <h6 class="product-title">
-                                                <a href="/book/`+item.id+`">`+item.title+`</a>
+                                                <a href="/sport/`+item.id+`">`+item.title+`</a>
                                             </h6>
-                                            <small class="text-color-primary">`+item.author+`</small>
+                                            <small class="text-color-primary">`+item.brand+`</small>
                                             <div class="product-price">
                                                 <span class="new-price">IDR `+parseFloat(item.price).toLocaleString()+`</span>
                                             </div>
@@ -67,7 +67,7 @@ function getData(toPage=1) {
                         </a>
                     </li>`;
             }
-            if (response.data.filter._page > 1) {
+            if(response.data.filter._page > 1) {
                 template += 
                 `<li>
                     <a class="page-numbers" onclick="getData(`+(response.data.filter._page-1)+`)">
@@ -137,5 +137,3 @@ function getData(toPage=1) {
     });
     
     
-
-

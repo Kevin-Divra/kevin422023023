@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="description" content="Sportstore">
-        <meta name="keywords" content="ecommerce,book">
+        <meta name="keywords" content="ecommerce,sport">
         <meta name="author" content="422023023-kevin">
 
         <title>@yield('title') | 422023023-kevin</title>

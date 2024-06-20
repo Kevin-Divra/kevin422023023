@@ -7,7 +7,7 @@
                 <div class="col-lg-12 d-none d-md-block">
                     <div class="top-logo-area">
                         <div class="logo text-md-center">
-                            <a href="{{route('home')}}"><img src="{{asset('assets/images/logo/logo.png') }}" alt="logo" style="width: 40%"></a>
+                            <a href="{{route('home')}}"><img src="{{asset('assets/images/logo/logo.png') }}" alt="logo" style="width: 15%"></a>
                         </div>
                     </div>
                 </div>
@@ -17,11 +17,8 @@
                 <div class="col-lg-3 col-lg-3 col-6">
                     <div class="header-right-items content__hidden d-none d-md-block">
                         <span class="phone-number font-lg-p" title="Call us for fast delivery">
-                            <a href="#cfd"><i class="icon-telephone"></i>&nbsp;&nbsp;<small class="text-color-primary"><b>(62) 89213456789</b></small></a>
+                            <a href="#cfd"><i class="icon-telephone"></i>&nbsp;&nbsp;<small class="text-dark"><b>(62) 81779446558</b></small></a>
                         </span>          
-                    </div>
-                    <div class="logo_hidden text-start">
-                        <a href="{{route('home')}}"><img src="{{asset('assets/images/logo/logo.png')}}" alt="" style="height:40px;"></a>
                     </div>
                 </div>
 

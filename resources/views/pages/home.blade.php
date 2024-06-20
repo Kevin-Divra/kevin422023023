@@ -41,9 +41,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="banner-video-box">
-                            <img src="https://www.magd.ox.ac.uk/wp-content/uploads/2022/07/3027-052-2000x1000.jpg" alt="">
+                            <img src="https://i.pinimg.com/564x/43/dd/44/43dd446a07af6774a82678a1346b2491.jpg" alt="">
                             <div class="video-icon">
-                                <a href="https://youtu.be/Na5KPnx0uS8?si=PPoJfum8xG-Jt8h9" class="popup-youtube"><i class="linear-ic-play"></i></a>
+                                <a href="https://www.youtube.com/embed/KmhJN19qCQ4" class="popup-youtube"><i class="linear-ic-play"></i></a>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     @for($i=1;$i<=$partner_count;$i++)
                         <div class="col-lg-12">
                             <div class="single-brand-item">
-                                <a href="#"><img src="assets/images/brand/partner{{ $i }}.jpg" class="img-fluid" alt="Partner Images"></a>
+                                <a href="#"><img src="assets/images/brand/partnerb{{ $i }}.jpg" class="img-fluid" alt="Partner Images"></a>
                             </div>
                         </div>
                     @endfor
